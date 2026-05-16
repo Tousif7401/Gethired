@@ -54,7 +54,7 @@ function App() {
               <span className="text-white/30">|</span>
               <a href="https://www.linkedin.com/in/mohammed-tousif-342306171/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
               <span className="text-white/30">|</span>
-              <a href="https://x.com/tousif" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">X</a>
+              <a href="https://x.com/mohammed_t41990" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">X</a>
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
