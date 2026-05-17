@@ -49,14 +49,6 @@ function App() {
           </p>
           
           <div className="animate-fade-rise-delay-2 flex flex-col items-center justify-center mt-12 gap-8">
-            <div className="flex flex-wrap items-center justify-center gap-4 text-sm md:text-base text-foreground/90 bg-black/30 backdrop-blur-md px-6 py-3 rounded-full border border-white/10">
-              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=tousif.cse.rymec@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">tousif.cse.rymec@gmail.com</a>
-              <span className="text-white/30">|</span>
-              <a href="https://www.linkedin.com/in/mohammed-tousif-342306171/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
-              <span className="text-white/30">|</span>
-              <a href="https://x.com/mohammed_t41990" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">X</a>
-            </div>
-            
             <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
               <a href="/resume.pdf" download="Mohammed_Tousif_Resume.pdf" className="liquid-glass rounded-full px-8 py-3.5 text-sm sm:text-base text-foreground hover:scale-[1.03] cursor-pointer transition-transform flex items-center gap-2">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
@@ -65,6 +57,26 @@ function App() {
               <a href="#projects" className="liquid-glass rounded-full px-8 py-3.5 text-sm sm:text-base text-foreground hover:scale-[1.03] cursor-pointer transition-transform">
                 View Work
               </a>
+            </div>
+
+            <div className="flex flex-wrap items-center justify-center gap-4 text-sm md:text-base text-foreground/90 bg-black/30 backdrop-blur-md px-6 py-3 rounded-full border border-white/10">
+              <span className="tooltip" data-tooltip="Email">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=tousif.cse.rymec@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                </a>
+              </span>
+              <span className="text-white/30">|</span>
+              <span className="tooltip" data-tooltip="LinkedIn">
+                <a href="https://www.linkedin.com/in/mohammed-tousif-342306171/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg>
+                </a>
+              </span>
+              <span className="text-white/30">|</span>
+              <span className="tooltip" data-tooltip="X">
+                <a href="https://x.com/mohammed_t41990" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+                </a>
+              </span>
             </div>
           </div>
         </header>
@@ -121,7 +133,10 @@ function App() {
           <section id="projects" className="flex flex-col gap-12">
             <h2 className="font-display text-4xl sm:text-5xl text-foreground text-center">Selected <em className="not-italic text-muted-foreground">Projects</em></h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="liquid-glass rounded-3xl p-8 sm:p-10 hover:bg-white/[0.02] transition-colors group">
+              <div className="liquid-glass rounded-3xl p-8 sm:p-10 hover:bg-white/[0.02] transition-colors group relative">
+                <a href="https://ai-devsync.vercel.app/" target="_blank" rel="noopener noreferrer" className="absolute top-6 right-6 text-foreground/60 hover:text-foreground transition-colors">
+                  <svg className="w-5 h-5 rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 17L17 7M17 7H7M17 7V17"></path></svg>
+                </a>
                 <h3 className="text-xl font-medium text-foreground mb-2">Devsync AI</h3>
                 <p className="text-sm text-muted-foreground mb-6">AI-Powered Developer Workflow Platform</p>
                 <ul className="text-sm text-muted-foreground leading-relaxed space-y-3 list-disc list-inside mb-8">
@@ -136,7 +151,10 @@ function App() {
                 </div>
               </div>
 
-              <div className="liquid-glass rounded-3xl p-8 sm:p-10 hover:bg-white/[0.02] transition-colors group">
+              <div className="liquid-glass rounded-3xl p-8 sm:p-10 hover:bg-white/[0.02] transition-colors group relative">
+                <a href="https://clynicaree.vercel.app/" target="_blank" rel="noopener noreferrer" className="absolute top-6 right-6 text-foreground/60 hover:text-foreground transition-colors">
+                  <svg className="w-5 h-5 rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 17L17 7M17 7H7M17 7V17"></path></svg>
+                </a>
                 <h3 className="text-xl font-medium text-foreground mb-2">Clynicare</h3>
                 <p className="text-sm text-muted-foreground mb-6">Digital Healthcare Platform</p>
                 <ul className="text-sm text-muted-foreground leading-relaxed space-y-3 list-disc list-inside mb-8">
