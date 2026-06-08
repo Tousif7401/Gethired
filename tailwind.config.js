@@ -1,9 +1,9 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   darkMode: ["class"],
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./app/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -67,6 +67,7 @@ export default {
         "fade-rise": "fade-rise 0.8s ease-out both",
         "fade-rise-delay": "fade-rise 0.8s ease-out 0.2s both",
         "fade-rise-delay-2": "fade-rise 0.8s ease-out 0.4s both",
+        "pulsing-ai": "pulsing-ai 2s ease-in-out infinite",
       },
     },
   },

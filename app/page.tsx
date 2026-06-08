@@ -1,6 +1,22 @@
-import './index.css'
+'use client'
 
-function App() {
+import { useState, useEffect } from 'react'
+import ChatWidget from '@/components/ChatWidget'
+
+export default function HomePage() {
+  const [isChatOpen, setIsChatOpen] = useState(false)
+  const [showChatWidget, setShowChatWidget] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show chat widget when scrolled past 400px (past hero section)
+      setShowChatWidget(window.scrollY > 400)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <div className="relative min-h-screen bg-background selection:bg-white/20">
       {/* Fixed Background Video */}
@@ -35,9 +51,12 @@ function App() {
               Skills
             </a>
           </div>
-          <a href="https://mohammed-tousif.vercel.app/" target="_blank" rel="noopener noreferrer" className="liquid-glass rounded-full px-6 py-2.5 text-sm text-foreground hover:scale-[1.03] transition-transform flex items-center justify-center">
-            Portfolio
-          </a>
+          <button
+            onClick={() => setIsChatOpen(true)}
+            className="liquid-glass rounded-full px-6 py-2.5 text-sm text-foreground hover:scale-[1.03] transition-transform flex items-center justify-center cursor-pointer"
+          >
+            Ask AI
+          </button>
         </nav>
 
         <header className="min-h-[85vh] flex flex-col items-center justify-center text-center px-6">
@@ -47,7 +66,7 @@ function App() {
           <p className="animate-fade-rise-delay text-muted-foreground text-base sm:text-lg max-w-2xl mt-8 leading-relaxed">
             Full Stack Developer crafting scalable applications with React, Node.js, and modern web technologies. Bringing calm focus to complex problems.
           </p>
-          
+
           <div className="animate-fade-rise-delay-2 flex flex-col items-center justify-center mt-12 gap-8">
             <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
               <a href="/Tousif_Resume.pdf" download="Tousif_Resume.pdf" className="liquid-glass rounded-full px-8 py-3.5 text-sm sm:text-base text-foreground hover:scale-[1.03] cursor-pointer transition-transform flex items-center gap-2">
@@ -82,7 +101,7 @@ function App() {
         </header>
 
         <main className="max-w-6xl mx-auto px-6 py-24 flex flex-col gap-32 pb-40">
-          
+
           {/* Experience Section */}
           <section id="experience" className="flex flex-col gap-12">
             <h2 className="font-display text-4xl sm:text-5xl text-foreground text-center">Professional <em className="not-italic text-muted-foreground">Experience</em></h2>
@@ -233,14 +252,15 @@ function App() {
           </section>
 
         </main>
-        
+
         {/* Footer */}
         <footer className="w-full text-center py-8 mt-12 bg-black/40 backdrop-blur-md border-t border-white/10 text-sm text-foreground/90">
           © {new Date().getFullYear()} Mohammed Tousif. Designed for calm focus.
         </footer>
       </div>
+
+      {/* Chat Widget */}
+      <ChatWidget isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} showWidget={showChatWidget} />
     </div>
   )
 }
-
-export default App

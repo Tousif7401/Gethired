@@ -1,14 +1,23 @@
-# Velorah - Hero Section
+# Mohammed Tousif - Portfolio
 
-A single-page hero section with a fullscreen looping background video, glassmorphic navigation, and cinematic typography.
+A modern, cinematic portfolio website showcasing my work as a Full Stack Developer.
+
+## Status: AI Chat Under Training
+
+**My AI is cooking fr**
+
+Teaching my assistant to answer questions without the whole "I'll do my best" energy. It's learning everything about me rn.
+
+> *Estimate completion: When it enters its main character era*
 
 ## Tech Stack
 
+- **Next.js 15** - React framework with App Router
 - **React 19** - UI library
-- **Vite** - Build tool and dev server
 - **TypeScript** - Type safety
 - **Tailwind CSS** - Utility-first styling
-- **shadcn/ui** - Component patterns (custom implementation)
+- **Framer Motion** - Smooth animations
+- **Google Generative AI** - Backend AI integration (in training)
 
 ## Features
 
@@ -19,6 +28,7 @@ A single-page hero section with a fullscreen looping background video, glassmorp
 - Smooth fade-rise animations
 - Liquid glass button effects
 - Responsive design
+- AI Chat Assistant (coming soon)
 
 ## Getting Started
 
@@ -40,29 +50,54 @@ npm run preview
 
 ```
 gethiredFR/
-├── src/
-│   ├── App.tsx          # Main component with hero section
-│   ├── index.css        # Tailwind + custom styles
-│   ├── main.tsx         # React entry point
-│   └── vite-env.d.ts    # Vite type declarations
-├── tailwind.config.js   # Tailwind configuration
-├── postcss.config.js    # PostCSS configuration
-└── vite.config.ts       # Vite configuration
+├── app/
+│   ├── page.tsx         # Main portfolio page
+│   ├── layout.tsx       # Root layout with fonts
+│   └── api/
+│       └── chat/        # AI chat endpoint (in training)
+├── components/
+│   └── ChatWidget.tsx   # Chat UI component (being upgraded)
+├── public/              # Static assets
+├── tailwind.config.ts   # Tailwind configuration
+└── package.json         # Dependencies
 ```
 
 ## Custom Features
 
 ### Liquid Glass Effect
-The `.liquid-glass` class creates a subtle, elegant glass effect with a gradient border.
+The `.liquid-glass` class creates a subtle, elegant glass effect with a gradient border. Applied to cards, buttons, and the chat widget for a cohesive modern aesthetic.
 
 ### Animations
-Three fade-rise animations with staggered delays:
-- `animate-fade-rise` - Immediate
-- `animate-fade-rise-delay` - 200ms delay
-- `animate-fade-rise-delay-2` - 400ms delay
+Framer Motion powered animations with smooth spring transitions and fade effects. Elements enter with staggered timing for a polished feel.
 
 ### Color Theme
 Dark theme using HSL values:
 - Background: Deep navy blue (201 100% 13%)
 - Foreground: White
 - Muted: Subtle gray tones
+
+## AI Chat Status
+
+My AI is currently locked in:
+- My ZYPTR and Kodemapa era
+- My tech stack (no cap, actually useful skills)
+- The DevSync AI platform I built (meta, I know)
+- How to not give LinkedIn bot responses
+
+Dropping soon when it understands the assignment.
+
+## Contact
+
+While the AI is training, feel free to reach out directly:
+
+- **Email**: tousif.cse.rymec@gmail.com
+- **LinkedIn**: [Mohammed Tousif](https://www.linkedin.com/in/mohammed-tousif-342306171/)
+- **X (Twitter)**: [@mohammed_t41990](https://x.com/mohammed_t41990)
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+Built with focus and precision. Designed to make an impression.
