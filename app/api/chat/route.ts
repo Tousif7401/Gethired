@@ -78,10 +78,11 @@ export async function POST(req: NextRequest) {
         'Transfer-Encoding': 'chunked',
       },
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Chat API error:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Failed to generate response';
     return new Response(
-      JSON.stringify({ error: error.message || 'Failed to generate response' }),
+      JSON.stringify({ error: errorMessage }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }

@@ -44,10 +44,12 @@ export default function ChatWidget({ isOpen, onClose, showWidget = true }: ChatW
   const [randomMessage, setRandomMessage] = useState(TRAINING_MESSAGES[0])
   const [randomTooltip, setRandomTooltip] = useState(TOOLTIP_MESSAGES[0])
 
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     setRandomMessage(TRAINING_MESSAGES[Math.floor(Math.random() * TRAINING_MESSAGES.length)])
     setRandomTooltip(TOOLTIP_MESSAGES[Math.floor(Math.random() * TOOLTIP_MESSAGES.length)])
   }, [])
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   return (
     <>
