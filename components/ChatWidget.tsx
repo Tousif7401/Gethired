@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
-import { useMemo } from 'react'
+import { useState, useEffect } from 'react'
 
 interface ChatWidgetProps {
   isOpen: boolean
@@ -41,8 +41,13 @@ const TOOLTIP_MESSAGES = [
 ]
 
 export default function ChatWidget({ isOpen, onClose, showWidget = true }: ChatWidgetProps) {
-  const randomMessage = useMemo(() => TRAINING_MESSAGES[Math.floor(Math.random() * TRAINING_MESSAGES.length)], [])
-  const randomTooltip = useMemo(() => TOOLTIP_MESSAGES[Math.floor(Math.random() * TOOLTIP_MESSAGES.length)], [])
+  const [randomMessage, setRandomMessage] = useState(TRAINING_MESSAGES[0])
+  const [randomTooltip, setRandomTooltip] = useState(TOOLTIP_MESSAGES[0])
+
+  useEffect(() => {
+    setRandomMessage(TRAINING_MESSAGES[Math.floor(Math.random() * TRAINING_MESSAGES.length)])
+    setRandomTooltip(TOOLTIP_MESSAGES[Math.floor(Math.random() * TOOLTIP_MESSAGES.length)])
+  }, [])
 
   return (
     <>
@@ -112,11 +117,11 @@ export default function ChatWidget({ isOpen, onClose, showWidget = true }: ChatW
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.96, y: 20 }}
               transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-              className="fixed left-4 right-4 top-1/2 -translate-y-1/2 sm:left-auto sm:right-10 sm:top-20 sm:translate-y-0 sm:w-80 sm:max-w-[320px] z-50 max-w-[calc(100vw-2rem)]"
+              className="fixed left-4 right-4 top-1/2 -translate-y-1/2 sm:left-auto sm:right-10 sm:top-20 sm:translate-y-0 sm:w-[400px] sm:max-w-[400px] z-50 max-w-[calc(100vw-2rem)]"
             >
               <div className="liquid-glass rounded-xl overflow-hidden">
                 {/* Header */}
-                <div className="flex items-center justify-between px-3 py-2 border-b border-white/10">
+                <div className="flex items-center justify-between px-3 py-3 sm:px-5 sm:py-3 border-b border-white/10">
                   <div className="flex items-baseline gap-1">
                     <h3 className="text-white font-display text-xs" style={{ fontFamily: 'var(--font-display)' }}>
                       Mohammed
@@ -139,20 +144,20 @@ export default function ChatWidget({ isOpen, onClose, showWidget = true }: ChatW
                 </div>
 
                 {/* Training Message */}
-                <div className="px-3 py-3 text-center">
+                <div className="px-3 sm:px-5 py-5 sm:py-6 text-center">
                   <motion.div
                     initial={{ y: 10, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.2 }}
                   >
-                    <h4 className="text-white text-sm font-display mb-1.5" style={{ fontFamily: 'var(--font-display)' }}>
+                    <h4 className="text-white text-sm sm:text-base font-display mb-2 sm:mb-3" style={{ fontFamily: 'var(--font-display)' }}>
                       {randomMessage.title}
                     </h4>
-                    <p className="text-white/50 text-[10px] max-w-[200px] mx-auto mb-3 leading-relaxed">
+                    <p className="text-white/50 text-[10px] sm:text-xs max-w-[200px] sm:max-w-[280px] mx-auto mb-3 sm:mb-4 leading-relaxed">
                       {randomMessage.message}
                     </p>
 
-                    <div className="bg-white/[0.03] rounded-lg border border-white/10 px-2.5 py-2 max-w-[200px] mx-auto">
+                    <div className="bg-white/[0.03] rounded-lg border border-white/10 px-2.5 py-2 sm:px-4 sm:py-2.5 max-w-[200px] sm:max-w-[280px] mx-auto">
                       <p className="text-white/40 text-[8px] mb-1">Or just slide into my DMs:</p>
                       <a
                         href="mailto:tousif.cse.rymec@gmail.com"
@@ -165,10 +170,10 @@ export default function ChatWidget({ isOpen, onClose, showWidget = true }: ChatW
                 </div>
 
                 {/* Footer */}
-                <div className="px-3 py-2 border-t border-white/10">
+                <div className="px-3 py-3 sm:px-5 sm:py-2.5 border-t border-white/10">
                   <button
                     onClick={onClose}
-                    className="w-full py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white/80 hover:text-white transition-all text-[10px]"
+                    className="w-full py-2.5 rounded-lg bg-white/10 hover:bg-white/20 text-white/80 hover:text-white transition-all text-[10px] sm:text-xs"
                   >
                     Got it!
                   </button>
