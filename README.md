@@ -2,13 +2,13 @@
 
 A modern, cinematic portfolio website showcasing my work as a Full Stack Developer.
 
-## Status: AI Chat Under Training
+## Status: AI Chat Live ✅
 
-**My AI is cooking fr**
+**My AI is ready to talk**
 
-Teaching my assistant to answer questions without the whole "I'll do my best" energy. It's learning everything about me rn.
+Powered by Gemini 2.5 Flash with text-to-speech via Fish.audio. Ask me anything about my work, skills, or projects.
 
-> *Estimate completion: When it enters its main character era*
+> *Just click the chat icon after scrolling down*
 
 ## Tech Stack
 
@@ -17,7 +17,8 @@ Teaching my assistant to answer questions without the whole "I'll do my best" en
 - **TypeScript** - Type safety
 - **Tailwind CSS** - Utility-first styling
 - **Framer Motion** - Smooth animations
-- **Google Generative AI** - Backend AI integration (in training)
+- **Google Generative AI** - Backend AI integration (Gemini 2.5 Flash)
+- **Fish.audio** - Text-to-speech for voice responses
 
 ## Features
 
@@ -28,13 +29,17 @@ Teaching my assistant to answer questions without the whole "I'll do my best" en
 - Smooth fade-rise animations
 - Liquid glass button effects
 - Responsive design
-- AI Chat Assistant (coming soon)
+- AI Chat Assistant with voice responses (TTS)
 
 ## Getting Started
 
 ```bash
 # Install dependencies
 npm install
+
+# Create .env.local with your API keys:
+# GEMINI_API_KEY=your_gemini_key
+# FISH_AUDIO_API_KEY=your_fish_audio_key
 
 # Start development server
 npm run dev
@@ -54,9 +59,10 @@ gethiredFR/
 │   ├── page.tsx         # Main portfolio page
 │   ├── layout.tsx       # Root layout with fonts
 │   └── api/
-│       └── chat/        # AI chat endpoint (in training)
+    ├── chat/            # AI chat endpoint (Gemini streaming)
+    └── tts/             # Text-to-speech endpoint (Fish.audio)
 ├── components/
-│   └── ChatWidget.tsx   # Chat UI component (being upgraded)
+│   └── ChatWidget.tsx   # Chat UI with TTS support
 ├── public/              # Static assets
 ├── tailwind.config.ts   # Tailwind configuration
 └── package.json         # Dependencies
@@ -76,15 +82,12 @@ Dark theme using HSL values:
 - Foreground: White
 - Muted: Subtle gray tones
 
-## AI Chat Status
+## AI Chat Features
 
-My AI is currently locked in:
-- My ZYPTR and Kodemapa era
-- My tech stack (no cap, actually useful skills)
-- The DevSync AI platform I built (meta, I know)
-- How to not give LinkedIn bot responses
-
-Dropping soon when it understands the assignment.
+- **Streaming responses** - Real-time text generation
+- **Voice playback** - Automatic TTS via Fish.audio
+- **Context-aware** - Knows my experience, projects, and skills
+- **Toggle TTS** - Enable/disable voice with one click
 
 ## Contact
 
