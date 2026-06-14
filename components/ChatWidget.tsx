@@ -10,6 +10,7 @@ import { Send, Sparkles } from 'lucide-react'
 interface ChatWidgetProps {
   isOpen: boolean
   onClose: () => void
+  onOpen: () => void
   showWidget?: boolean
 }
 
@@ -24,6 +25,10 @@ const TOOLTIP_MESSAGES = [
   "Ask about my work",
   "AI assistant ready",
   "Need help? Chat now",
+  "Curious about my projects?",
+  "Want to know my tech stack?",
+  "How can I contact you?",
+  "Ask me anything!",
 ]
 
 const DEFAULT_GREETING = "Hey! I'm Mohammed, a Full Stack Developer who loves building things that actually work. Ask me about my projects, tech stack, or how I survived my hackathon runs."
@@ -37,7 +42,7 @@ const QUICK_OPTIONS = [
   { label: '🏆 Achievements', message: 'What are your key achievements?' },
 ]
 
-export default function ChatWidget({ isOpen, onClose, showWidget = true }: ChatWidgetProps) {
+export default function ChatWidget({ isOpen, onClose, onOpen, showWidget = true }: ChatWidgetProps) {
   const [randomTooltip, setRandomTooltip] = useState(TOOLTIP_MESSAGES[0])
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
@@ -54,6 +59,21 @@ export default function ChatWidget({ isOpen, onClose, showWidget = true }: ChatW
   useEffect(() => {
     setRandomTooltip(TOOLTIP_MESSAGES[Math.floor(Math.random() * TOOLTIP_MESSAGES.length)])
   }, [])
+
+  // Rotate through tooltip messages every 3 seconds
+  useEffect(() => {
+    if (!showWidget) return
+
+    const interval = setInterval(() => {
+      setRandomTooltip((prev) => {
+        const currentIndex = TOOLTIP_MESSAGES.indexOf(prev)
+        const nextIndex = (currentIndex + 1) % TOOLTIP_MESSAGES.length
+        return TOOLTIP_MESSAGES[nextIndex]
+      })
+    }, 3000)
+
+    return () => clearInterval(interval)
+  }, [showWidget])
   /* eslint-enable react-hooks/set-state-in-effect */
 
   useEffect(() => {
@@ -232,7 +252,7 @@ export default function ChatWidget({ isOpen, onClose, showWidget = true }: ChatW
           <motion.button
             data-chat-trigger
             className="chat-btn"
-            onClick={isOpen ? onClose : () => {}}
+            onClick={isOpen ? onClose : onOpen}
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: isOpen ? 0 : 1, opacity: isOpen ? 0 : 1 }}
             transition={{ type: 'spring', stiffness: 260, damping: 20 }}
@@ -394,7 +414,7 @@ export default function ChatWidget({ isOpen, onClose, showWidget = true }: ChatW
                 </div>
 
                 {/* Quick Options */}
-                {messages.length === 1 && (
+                {messages.length <= 4 && (
                   <div className="px-4 py-2 border-t border-white/10 shrink-0">
                     <p className="text-white/40 text-xs mb-2">Quick questions:</p>
                     <div className="flex flex-wrap gap-2">

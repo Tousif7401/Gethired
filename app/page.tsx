@@ -260,7 +260,7 @@ export default function HomePage() {
       </div>
 
       {/* Chat Widget */}
-      <ChatWidget isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} showWidget={showChatWidget} />
+      <ChatWidget isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} onOpen={() => setIsChatOpen(true)} showWidget={showChatWidget} />
     </div>
   )
 }
