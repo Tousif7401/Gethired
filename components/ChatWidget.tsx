@@ -48,6 +48,7 @@ export default function ChatWidget({ isOpen, onClose, onOpen, showWidget = true 
   const [input, setInput] = useState('')
   const [hasInitialized, setHasInitialized] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [typingGreeting, setTypingGreeting] = useState('')
   // TTS state - DISABLED: Fish.audio API requires payment/credits
   // To enable: Add credits at https://fish.audio/app/developers
   // const [isSpeaking, setIsSpeaking] = useState(false)
@@ -143,21 +144,34 @@ export default function ChatWidget({ isOpen, onClose, onOpen, showWidget = true 
   }
   */
 
-  // Initialize with greeting when chat opens for the first time
+  // Initialize with greeting when chat opens for the first time (with typewriter effect)
   /* eslint-disable react-hooks/rules-of-hooks, react-hooks/exhaustive-deps */
   useEffect(() => {
     if (isOpen && !hasInitialized && messages.length === 0) {
-      setMessages([{
-        role: 'assistant',
-        content: DEFAULT_GREETING,
-        timestamp: new Date(),
-      }])
-      setHasInitialized(true)
-      // Play TTS for greeting - DISABLED
-      // setTimeout(() => playTTS(DEFAULT_GREETING), 500)
+      setTypingGreeting('')
+      let index = 0
+      const interval = setInterval(() => {
+        if (index < DEFAULT_GREETING.length) {
+          setTypingGreeting(DEFAULT_GREETING.slice(0, index + 1))
+          index++
+        } else {
+          clearInterval(interval)
+          setMessages([{
+            role: 'assistant',
+            content: DEFAULT_GREETING,
+            timestamp: new Date(),
+          }])
+          setHasInitialized(true)
+          setTypingGreeting('')
+        }
+      }, 25) // Speed of typing (lower = faster)
+    }
+
+    return () => {
+      // Cleanup interval if component unmounts
     }
   }, [isOpen, hasInitialized])
-  /* eslint-enable react-hooks/rules-of-hooks, react-hooks/exhaustive-deps */
+  /* eslint-enable react-hooks/rules-of-hooks, react-hooks-exhaustive-deps */
 
   const sendMessage = async () => {
     if (!input.trim() || isLoading) return
@@ -356,11 +370,21 @@ export default function ChatWidget({ isOpen, onClose, onOpen, showWidget = true 
 
                 {/* Messages */}
                 <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3">
-                  {messages.length === 0 ? (
+                  {messages.length === 0 && !typingGreeting ? (
                     <div className="text-center py-8">
                       <p className="text-white/60 text-sm mb-2">Hi! Ask me anything</p>
                       <p className="text-white/40 text-xs">About my work, projects, or technical background</p>
                     </div>
+                  ) : messages.length === 0 && typingGreeting ? (
+                    <motion.div
+                      initial={{ y: 10, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      className="flex justify-start"
+                    >
+                      <div className="bg-white/10 rounded-lg px-3 py-2">
+                        <p className="text-sm whitespace-pre-wrap">{typingGreeting}</p>
+                      </div>
+                    </motion.div>
                   ) : (
                     messages.map((message, index) => (
                       <motion.div
