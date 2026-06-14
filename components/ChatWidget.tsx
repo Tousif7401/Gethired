@@ -28,6 +28,15 @@ const TOOLTIP_MESSAGES = [
 
 const DEFAULT_GREETING = "Hey! I'm Mohammed, a Full Stack Developer who loves building things that actually work. Ask me about my projects, tech stack, or how I survived my hackathon runs."
 
+const QUICK_OPTIONS = [
+  { label: '🎯 Projects', message: 'Tell me about your projects' },
+  { label: '🧠 Tech Stack', message: 'What technologies do you work with?' },
+  { label: '📧 Contact', message: 'How can I contact you?' },
+  { label: '🎓 Education', message: 'Tell me about your education' },
+  { label: '💼 Experience', message: 'What is your work experience?' },
+  { label: '🏆 Achievements', message: 'What are your key achievements?' },
+]
+
 export default function ChatWidget({ isOpen, onClose, showWidget = true }: ChatWidgetProps) {
   const [randomTooltip, setRandomTooltip] = useState(TOOLTIP_MESSAGES[0])
   const [messages, setMessages] = useState<Message[]>([])
@@ -201,6 +210,11 @@ export default function ChatWidget({ isOpen, onClose, showWidget = true }: ChatW
     } finally {
       setIsLoading(false)
     }
+  }
+
+  const handleQuickOption = (message: string) => {
+    setInput(message)
+    setTimeout(() => sendMessage(), 100)
   }
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -378,6 +392,25 @@ export default function ChatWidget({ isOpen, onClose, showWidget = true }: ChatW
 
                   <div ref={messagesEndRef} />
                 </div>
+
+                {/* Quick Options */}
+                {messages.length === 1 && (
+                  <div className="px-4 py-2 border-t border-white/10 shrink-0">
+                    <p className="text-white/40 text-xs mb-2">Quick questions:</p>
+                    <div className="flex flex-wrap gap-2">
+                      {QUICK_OPTIONS.map((option) => (
+                        <button
+                          key={option.label}
+                          onClick={() => handleQuickOption(option.message)}
+                          className="px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full text-xs text-white/80 hover:text-white transition-all"
+                          disabled={isLoading}
+                        >
+                          {option.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
                 {/* Input */}
                 <div className="px-4 py-3 border-t border-white/10 shrink-0">
